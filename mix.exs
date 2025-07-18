@@ -1,18 +1,18 @@
-defmodule DeeplElixir.MixProject do
+defmodule Deepl.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :deepl_elixir,
+      app: :deepl,
       version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
       deps: deps(),
-      name: "deepl_elixir",
-      source_url: "https://github.com/muzhawir/deepl_elixir",
-      homepage_url: "https://hex.pm/packages/deepl_elixir"
+      name: "deepl",
+      source_url: "https://github.com/muzhawir/deepl",
+      homepage_url: "https://hex.pm/packages/deepl"
     ]
   end
 
@@ -23,7 +23,7 @@ defmodule DeeplElixir.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/muzhawir/deepl_elixir"}
+      links: %{"GitHub" => "https://github.com/muzhawir/deepl"}
     ]
   end
 
@@ -37,9 +37,14 @@ defmodule DeeplElixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:req, "~> 0.5.0"},
+
+      # Documentation
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
+
+      # Development and testing dependencies
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
       {:styler, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
