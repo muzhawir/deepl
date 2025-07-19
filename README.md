@@ -1,26 +1,30 @@
-
 # DeepL
 
 > [!WARNING]
-> This package is under heavy development and considered alpha. APIs and features may change
-without notice.
+> This package is in active development and considered alpha. APIs and features may change without notice.
 
 [![Hex.pm](https://img.shields.io/hexpm/v/deepl)](https://hex.pm/packages/deepl)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/deepl)](https://hex.pm/packages/deepl)
 
-The [DeepL API](https://www.deepl.com/docs-api) is a language AI API that allows other computer
-programs to send texts and documents to DeepL's servers and receive high-quality translations and improvements to the text. This opens a whole universe of opportunities for developers: any
-translation product you can imagine can now be built on top of DeepL's best-in-class translation technology.
+The [DeepL API](https://www.deepl.com/docs-api) provides a way for programs to send texts and
+documents to DeepL's servers and receive high-quality translations and text improvements. This
+enables developers to build a wide range of translation tools using DeepL's leading translation technology.
 
-The `deepl` Elixir package is a **community-maintained** library that offers a convenient way for
-Elixir applications to interact with the DeepL API.
+The `deepl` Elixir package is a **community-maintained** library that makes it easy for Elixir applications to work with the DeepL API.
 
 ## Requirements
 
-- Elixir 1.18 or later
-- Erlang/OTP 27 or later
+To use `deepl`, your environment must meet these requirements:
+
+- **Erlang**: Version `27.0` or later
+- **Elixir**: Version `1.18.0-otp-27` or later
 
 ## Installation
+
+To install `deepl`, follow the instructions in the
+[Getting Started Guide](https://hexdocs.pm/deepl/getting-started.html).
+
+<!-- ## Installation
 
 Add to your `mix.exs`:
 
@@ -77,7 +81,7 @@ List supported languages:
 ```elixir
 iex> Deepl.languages(:target)
 {:ok, [%{"language" => "DE", "name" => "German"}, ...]}
-```
+``` -->
 
 ## License
 
