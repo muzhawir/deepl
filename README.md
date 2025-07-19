@@ -45,7 +45,8 @@ mix deps.get
 ## Authentication
 
 To use the API, you need an authentication key. You can find your key in the
-[API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account.
+[API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account, you
+can consume up to 500,000 characters per month for free.
 
 Set the key in your config:
 
