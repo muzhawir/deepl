@@ -6,4 +6,5 @@ import Config
 
 if Mix.env() in [:dev, :test] do
   config :deepl, api_key: "test:fx"
+  config :deepl, request_behaviour: Deepl.MockRequest
 end
