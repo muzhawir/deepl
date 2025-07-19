@@ -16,10 +16,7 @@ defmodule Deepl.Usage do
   ## Examples
 
       iex> Deepl.Usage.get()
-      %{
-        "character_count": 180118,
-        "character_limit": 1250000
-      }
+      %{"character_count": 100, "character_limit": 500000}
 
   """
   @spec get() :: map()
@@ -34,7 +31,7 @@ defmodule Deepl.Usage do
         ]
       ]
       |> Request.new()
-      |> Request.run_request()
+      |> Deepl.Request.run_request()
 
     JSON.decode!(response.body)
   end

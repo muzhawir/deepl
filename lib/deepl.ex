@@ -1,13 +1,14 @@
 defmodule Deepl do
   @moduledoc """
-  Elixir package for the DeepL language translation API.
+  An Elixir package providing a convenient interface to the [DeepL](https://www.deepl.com/) API.
+
+  For more detailed information, refer to the
+  [DeepL API documentation](https://developers.deepl.com/docs/getting-started).
   """
   @moduledoc since: "0.1.0"
 
   @doc """
-  Retrieves the API key for the DeepL service from the application environment.
-
-  Returns `nil` and prints a warning if the API key is not set.
+  Get the API key from the application environment.
 
   ## Examples
 
@@ -43,9 +44,7 @@ defmodule Deepl do
   def set_api_key(key), do: Application.put_env(:deepl, :api_key, key)
 
   @doc """
-  Returns the current plan of the DeepL service based on the API key format.
-
-  Raises if the API key is not set.
+  Gets the current plan of the DeepL API based on the API key.
 
   ## Examples
 
@@ -65,7 +64,7 @@ defmodule Deepl do
   end
 
   @doc """
-  Returns the base URL for the DeepL API based on the current plan.
+  Get the base URL for the DeepL API based on the current plan.
 
   ## Examples
 

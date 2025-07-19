@@ -1,25 +1,23 @@
 defmodule UsageTest do
   use ExUnit.Case, async: true
 
+  import Mox
+
   alias Deepl.Usage
+  alias Req.Request
+  alias Req.Response
+
+  setup :verify_on_exit!
 
   describe "get/0" do
-    test "returns the usage information" do
-      usage = Usage.get()
+    test "returns usage information" do
+      json = ~s"{\"character_count\":100,\"character_limit\":500000}"
 
-      assert is_map(usage)
+      expect(Deepl.MockRequest, :run_request, fn _request ->
+        {%Request{}, %Response{body: json}}
+      end)
 
-      case Deepl.plan!() do
-        :free ->
-          Enum.each(["character_count", "character_limit"], fn key ->
-            assert Map.has_key?(usage, key)
-          end)
-
-        :pro ->
-          Enum.each(["character_count", "character_limit", "products"], fn key ->
-            assert Map.has_key?(usage, key)
-          end)
-      end
+      assert Usage.get() == JSON.decode!(json)
     end
   end
 end

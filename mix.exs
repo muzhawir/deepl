@@ -4,7 +4,7 @@ defmodule Deepl.MixProject do
   def project do
     [
       app: :deepl,
-      version: "0.1.0",
+      version: "0.0.1",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       description: description(),
@@ -37,14 +37,16 @@ defmodule Deepl.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      # Core
       {:req, "~> 0.5.0"},
 
       # Documentation
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
 
-      # Development and testing dependencies
+      # Development & testing
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:mox, "~> 1.0", only: :test},
       {:styler, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
