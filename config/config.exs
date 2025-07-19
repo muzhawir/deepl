@@ -5,5 +5,5 @@ import Config
 # (https://www.deepl.com/en/your-account/keys)
 
 if Mix.env() in [:dev, :test] do
-  config :deepl, api_key: "c5bfe33a-0487-4e37-add3:fx"
+  config :deepl, api_key: "test:fx"
 end
