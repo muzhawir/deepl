@@ -47,7 +47,7 @@ defmodule Deepl.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:mox, "~> 1.0", only: :test},
-      {:styler, "~> 1.2", only: [:dev, :test], runtime: false},
+      {:styler, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
 end
