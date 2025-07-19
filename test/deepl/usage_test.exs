@@ -1,4 +1,4 @@
-defmodule UsageTest do
+defmodule Deepl.UsageTest do
   use ExUnit.Case, async: true
 
   import Mox
