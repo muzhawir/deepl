@@ -5,6 +5,7 @@ defmodule Deepl.Usage do
   For more information, refer to the retrieve usage and quota
   [documentation](https://developers.deepl.com/api-reference/usage-and-quota).
   """
+  @moduledoc since: "0.0.1"
 
   import Deepl.HTTPHelper, only: [required_request_header: 0]
 
