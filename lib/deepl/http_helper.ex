@@ -5,7 +5,7 @@ defmodule Deepl.HTTPHelper do
   @doc """
   Returns the required headers for Deepl API requests.
   """
-  @spec required_request_header(Keyword.t()) :: list()
+  @spec required_request_header(Keyword.t()) :: list(tuple())
   def required_request_header(opts \\ []) do
     [
       {"Accept", Keyword.get(opts, :accept, "application/json")},
