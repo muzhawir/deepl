@@ -6,9 +6,11 @@ defmodule Deepl.Usage do
   [documentation](https://developers.deepl.com/api-reference/usage-and-quota).
   """
 
+  import Deepl.HTTPHelper, only: [required_request_header: 0]
+
   alias Req.Request
 
-  @base_url Deepl.base_url!() <> "/usage"
+  @base_url Deepl.base_url!() <> "/v2/usage"
 
   @doc """
   Retrieve current usage and quota information.
@@ -25,10 +27,7 @@ defmodule Deepl.Usage do
       [
         method: :get,
         url: @base_url,
-        headers: [
-          {"Accept", "application/json"},
-          {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
-        ]
+        headers: required_request_header()
       ]
       |> Request.new()
       |> Deepl.Request.run_request()
