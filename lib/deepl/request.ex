@@ -5,7 +5,5 @@ defmodule Deepl.Request do
 
   def run_request(request), do: implement().run_request(request)
 
-  defp implement do
-    Application.get_env(:deepl, :request_behaviour, Req.Request)
-  end
+  defp implement, do: Application.get_env(:deepl, :request_behaviour, Req.Request)
 end
