@@ -75,8 +75,8 @@ defmodule Deepl do
   @spec base_url!() :: String.t()
   def base_url! do
     case plan!() do
-      :free -> "https://api-free.deepl.com/v2"
-      :pro -> "https://api.deepl.com/v2"
+      :free -> "https://api-free.deepl.com"
+      :pro -> "https://api.deepl.com"
     end
   end
 end
