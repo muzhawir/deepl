@@ -1,14 +1,13 @@
 defmodule Deepl do
   @moduledoc """
-  An Elixir package providing a convenient interface to the [DeepL](https://www.deepl.com/) API.
-
-  For more detailed information, refer to the
-  [DeepL API documentation](https://developers.deepl.com/docs/getting-started).
+  An Elixir package providing a convenient interface to the [DeepL](https://www.deepl.com) API.
   """
   @moduledoc since: "0.1.0"
 
   @doc """
   Get the API key from the application environment.
+
+  Retrieves the API key set in the application configuration.
 
   ## Examples
 
@@ -34,6 +33,8 @@ defmodule Deepl do
   @doc """
   Sets the API key for the DeepL service.
 
+  Stores the API key string in the application environment.
+
   ## Examples
 
       iex> Deepl.set_api_key("wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
@@ -46,6 +47,8 @@ defmodule Deepl do
   @doc """
   Gets the current plan of the DeepL API based on the API key.
 
+  Returns `:free` for free accounts and `:pro` for pro accounts.
+
   ## Examples
 
       iex> Deepl.plan!()
@@ -56,15 +59,14 @@ defmodule Deepl do
   def plan! do
     key = get_api_key() || raise "API key is not set. Please set it using `Deepl.set_api_key/1`."
 
-    if String.ends_with?(key, ":fx") do
-      :free
-    else
-      :pro
-    end
+    if String.ends_with?(key, ":fx"), do: :free, else: :pro
   end
 
   @doc """
   Get the base URL for the DeepL API based on the current plan.
+
+  Returns the base URL for the DeepL API, which varies depending on whether the user has a
+  free or pro plan.
 
   ## Examples
 
