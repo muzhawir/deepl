@@ -7,7 +7,7 @@ defmodule Deepl.Usage do
   """
   @moduledoc since: "0.0.1"
 
-  import Deepl.HTTPHelper, only: [required_request_header: 0]
+  import Deepl.HTTPHelper, only: [required_request_header: 0, response: 2]
 
   alias Req.Request
 
@@ -22,7 +22,7 @@ defmodule Deepl.Usage do
       %{"character_count": 100, "character_limit": 500000}
 
   """
-  @spec get() :: map()
+  @spec get() :: {:ok, map()} | {:error, String.t()}
   def get do
     {_request, response} =
       [
@@ -33,6 +33,6 @@ defmodule Deepl.Usage do
       |> Request.new()
       |> Deepl.Request.run_request()
 
-    JSON.decode!(response.body)
+    response(response.status, response.body)
   end
 end
