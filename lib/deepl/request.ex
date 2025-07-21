@@ -1,5 +1,6 @@
 defmodule Deepl.Request do
   @moduledoc false
+  @moduledoc since: "0.1.0"
 
   @callback run_request(term()) :: {term(), Req.Response.t() | Exception.t()}
 
