@@ -12,4 +12,37 @@ defmodule Deepl.HTTPHelper do
       {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
     ]
   end
+
+  @doc """
+  Handles the response from the DeepL API.
+
+  It decodes the JSON body and returns a tuple with the status and decoded body.
+  """
+  @spec response(non_neg_integer(), binary()) :: {:ok, map()} | {:error, String.t()}
+  def response(status, body) when is_number(status) and is_binary(body) do
+    case status do
+      200 ->
+        {:ok, JSON.decode!(body)}
+
+      status when status in 400..599 ->
+        {:error, "[#{status}] " <> JSON.decode!(body)["message"]}
+
+      _ ->
+        {:error, "Unexpected response status: #{status}"}
+    end
+  end
+
+  @doc """
+  Handles the response from the DeepL API.
+
+  It decodes the JSON body and returns the decoded body on success, or raises an exception on
+  error.
+  """
+  @spec response!(non_neg_integer(), binary()) :: map() | Exception.t()
+  def response!(status, body) do
+    case response(status, body) do
+      {:ok, data} -> data
+      {:error, reason} -> raise "HTTP Error: #{reason}"
+    end
+  end
 end
