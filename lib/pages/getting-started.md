@@ -23,7 +23,7 @@ Add `deepl` to the dependencies in your `mix.exs` file:
 ```elixir
 def deps do
   [
-    {:deepl, "~> 0.1.0"}
+    {:deepl, "~> 0.1.1"}
   ]
 end
 ```
