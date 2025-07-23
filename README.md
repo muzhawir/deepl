@@ -10,7 +10,7 @@ The [DeepL API](https://www.deepl.com/docs-api) provides a way for programs to s
 documents to DeepL's servers and receive high-quality translations and text improvements. This
 enables developers to build a wide range of translation tools using DeepL's leading translation technology.
 
-The `deepl` Elixir package is a **community-maintained** library that makes it easy for Elixir applications to work with the DeepL API.
+`deepl` is a **community-maintained** Elixir package for integrating with the DeepL API.
 
 ## Requirements
 
@@ -24,65 +24,40 @@ To use `deepl`, your environment must meet these requirements:
 To install `deepl`, follow the instructions in the
 [Getting Started Guide](https://hexdocs.pm/deepl/getting-started.html).
 
-<!-- ## Installation
-
-Add to your `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:deepl, "~> 0.1.0"}
-  ]
-end
-```
-
-Then fetch dependencies:
-
-```sh
-mix deps.get
-```
-
-## Authentication
-
-To use the API, you need an authentication key. You can find your key in the
-[API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account, you
-can consume up to 500,000 characters per month for free.
-
-Set the key in your config:
-
-```elixir
-# config/config.exs
-config :deepl, api_key: "your-api-key"
-```
-
-Alternatively, set it at runtime:
-
-```elixir
-Deepl.set_api_key("your-api-key")
-```
-
 ## Usage
 
 Translate a text:
 
 ```elixir
-iex> Deepl.translate("Hello, world!", target_lang: "DE")
-{:ok, %{"translations" => [%{"text" => "Hallo, Welt!", "detected_source_language" => "EN"}]}}
+iex> Deepl.Text.translate("Hello World", "ID")
+{:ok,
+ %{
+   "translations" => [
+     %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
+   ]
+ }}
+
+iex> Deepl.Text.translate(["Hello World", "Hello Developer"], "ID")
+{:ok,
+ %{
+   "translations" => [
+     %{"detected_source_language" => "EN", "text" => "Halo Dunia"},
+     %{"detected_source_language" => "EN", "text" => "Halo Pengembang"}
+   ]
+ }}
+
+iex> Deepl.Text.translate("Hello World", "ID", show_billed_characters: true)
+{:ok,
+ %{
+   "translations" => [
+     %{
+       "billed_characters" => 11,
+       "detected_source_language" => "EN",
+       "text" => "Halo Dunia"
+     }
+   ]
+ }}
 ```
-
-Get usage statistics:
-
-```elixir
-iex> Deepl.usage()
-{:ok, %{"character_count" => 2345, "character_limit" => 1250000}}
-```
-
-List supported languages:
-
-```elixir
-iex> Deepl.languages(:target)
-{:ok, [%{"language" => "DE", "name" => "German"}, ...]}
-``` -->
 
 ## License
 
