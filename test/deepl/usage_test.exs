@@ -17,7 +17,7 @@ defmodule Deepl.UsageTest do
         {%Request{}, %Response{body: json}}
       end)
 
-      assert Usage.get() == JSON.decode!(json)
+      assert Usage.get() == {:ok, JSON.decode!(json)}
     end
   end
 end

@@ -44,12 +44,12 @@ defmodule DeeplTest do
   describe "base_url!/0" do
     test "returns the base URL for the free plan" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
-      assert Deepl.base_url!() == "https://api-free.deepl.com/v2"
+      assert Deepl.base_url!() == "https://api-free.deepl.com"
     end
 
     test "returns the base URL for the pro plan" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012")
-      assert Deepl.base_url!() == "https://api.deepl.com/v2"
+      assert Deepl.base_url!() == "https://api.deepl.com"
     end
 
     test "raises an error if the API key is not set" do
