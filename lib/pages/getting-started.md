@@ -1,7 +1,4 @@
-# DeepL
-
-> [!WARNING]
-> This package is in active development and considered alpha. APIs and features may change without notice.
+# Getting Started
 
 [![Hex.pm](https://img.shields.io/hexpm/v/deepl)](https://hex.pm/packages/deepl)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/deepl)](https://hex.pm/packages/deepl)
@@ -21,8 +18,40 @@ To use `deepl`, your environment must meet these requirements:
 
 ## Installation
 
-To install `deepl`, follow the instructions in the
-[Getting Started Guide](https://hexdocs.pm/deepl/getting-started.html).
+Add `deepl` to the dependencies in your `mix.exs` file:
+
+```elixir
+def deps do
+  [
+    {:deepl, "~> 0.1.0"}
+  ]
+end
+```
+
+Fetch the dependencies by running:
+
+```sh
+mix deps.get
+```
+
+## Authentication
+
+To use the API, you need an authentication key, which you can find in the
+[API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account. You can translate up to 500,000 characters per month for free.
+
+Set the key in your config:
+
+```elixir
+# config/config.exs
+config :deepl, api_key: "your-api-key"
+```
+
+Alternatively, set it at runtime:
+
+```elixir
+iex> Deepl.set_api_key("your-api-key")
+:ok
+```
 
 ## Usage
 

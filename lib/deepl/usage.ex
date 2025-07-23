@@ -5,10 +5,13 @@ defmodule Deepl.Usage do
   For more information, refer to the retrieve usage and quota
   [documentation](https://developers.deepl.com/api-reference/usage-and-quota).
   """
+  @moduledoc since: "0.0.1"
+
+  import Deepl.HTTPHelper, only: [required_request_header: 0, response: 2]
 
   alias Req.Request
 
-  @base_url Deepl.base_url!() <> "/usage"
+  @base_url Deepl.base_url!() <> "/v2/usage"
 
   @doc """
   Retrieve current usage and quota information.
@@ -19,20 +22,17 @@ defmodule Deepl.Usage do
       %{"character_count": 100, "character_limit": 500000}
 
   """
-  @spec get() :: map()
+  @spec get() :: {:ok, map()} | {:error, String.t()}
   def get do
     {_request, response} =
       [
         method: :get,
         url: @base_url,
-        headers: [
-          {"Accept", "application/json"},
-          {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
-        ]
+        headers: required_request_header()
       ]
       |> Request.new()
       |> Deepl.Request.run_request()
 
-    JSON.decode!(response.body)
+    response(response.status, response.body)
   end
 end

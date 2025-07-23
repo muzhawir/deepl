@@ -4,7 +4,7 @@ defmodule Deepl.MixProject do
   def project do
     [
       app: :deepl,
-      version: "0.0.1",
+      version: "0.1.0",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       description: description(),
@@ -12,7 +12,8 @@ defmodule Deepl.MixProject do
       deps: deps(),
       name: "deepl",
       source_url: "https://github.com/muzhawir/deepl",
-      homepage_url: "https://hex.pm/packages/deepl"
+      homepage_url: "https://hex.pm/packages/deepl",
+      docs: &docs/0
     ]
   end
 
@@ -25,6 +26,20 @@ defmodule Deepl.MixProject do
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/muzhawir/deepl"}
     ]
+  end
+
+  defp docs do
+    [
+      main: "getting-started",
+      # logo: "priv/assets/logo/doc_logo.svg",
+      extras: extra_pages()
+    ]
+  end
+
+  defp extra_pages do
+    List.flatten([
+      Path.wildcard("lib/pages/**/*.md")
+    ])
   end
 
   # Run "mix help compile.app" to learn about applications.

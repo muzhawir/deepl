@@ -1,4 +1,4 @@
-defmodule UsageTest do
+defmodule Deepl.UsageTest do
   use ExUnit.Case, async: true
 
   import Mox
@@ -17,7 +17,7 @@ defmodule UsageTest do
         {%Request{}, %Response{body: json}}
       end)
 
-      assert Usage.get() == JSON.decode!(json)
+      assert Usage.get() == {:ok, JSON.decode!(json)}
     end
   end
 end

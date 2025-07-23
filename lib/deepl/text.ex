@@ -1,0 +1,66 @@
+defmodule Deepl.Text do
+  @moduledoc """
+  Module for translating text using the DeepL API.
+  """
+  @moduledoc since: "0.1.0"
+
+  alias Deepl.HTTPHelper
+  alias Deepl.Text.HTTPRequest
+
+  @type text :: binary() | list(binary())
+
+  @doc """
+  Translates a single or multiple texts to the specified target language.
+
+  The `text` parameter can be a single string or a list of strings.
+
+  ## Examples
+
+      iex> Deepl.Text.translate("Hello World", "ID")
+      %{
+        "translations" => [
+          %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
+        ]
+      }}
+
+      iex> Deepl.Text.translate(["Hello World", "Hello Developer"], "ID")
+      {:ok,
+      %{
+        "translations" => [
+          %{"detected_source_language" => "EN", "text" => "Halo Dunia"},
+          %{"detected_source_language" => "EN", "text" => "Halo Pengembang"}
+        ]
+      }}
+
+      iex> Deepl.Text.translate("Hello World", "ID", show_billed_characters: true)
+      {:ok,
+      %{
+        "translations" => [
+          %{
+            "billed_characters" => 11,
+            "detected_source_language" => "EN",
+            "text" => "Halo Dunia"
+          }
+        ]
+      }}
+
+  """
+  @spec translate(text(), binary(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}
+  def translate(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
+    response = HTTPRequest.post_translate(text, target_lang, opts)
+
+    HTTPHelper.response(response.status, response.body)
+  end
+
+  @doc """
+  Translates a single or multiple texts to the specified target language.
+
+  This function like `translate/3`, but raises an error if the translation fails.
+  """
+  @spec translate!(text(), binary(), Keyword.t()) :: map() | Exception.t()
+  def translate!(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
+    response = HTTPRequest.post_translate(text, target_lang, opts)
+
+    HTTPHelper.response!(response.status, response.body)
+  end
+end
