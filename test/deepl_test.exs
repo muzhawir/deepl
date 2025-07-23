@@ -1,5 +1,5 @@
 defmodule DeeplTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   describe "get_api_key/0" do
     test "returns the API key from the application environment" do
@@ -44,11 +44,13 @@ defmodule DeeplTest do
   describe "base_url!/0" do
     test "returns the base URL for the free plan" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
+
       assert Deepl.base_url!() == "https://api-free.deepl.com"
     end
 
     test "returns the base URL for the pro plan" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012")
+
       assert Deepl.base_url!() == "https://api.deepl.com"
     end
 

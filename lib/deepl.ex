@@ -16,19 +16,7 @@ defmodule Deepl do
 
   """
   @spec get_api_key() :: String.t() | nil
-  def get_api_key, do: Application.get_env(:deepl, :api_key) || warn_missing_api_key()
-
-  defp warn_missing_api_key do
-    message = """
-    API Key does not exist.
-
-    Visit https://www.deepl.com/en/your-account/keys to create one and set the API key using
-    `Deepl.set_api_key/1` function.
-    """
-
-    IO.puts(IO.ANSI.yellow() <> message)
-    nil
-  end
+  def get_api_key, do: Application.get_env(:deepl, :api_key) || nil
 
   @doc """
   Sets the API key for the DeepL service.

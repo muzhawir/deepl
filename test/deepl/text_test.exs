@@ -7,7 +7,7 @@ defmodule Deepl.TextTest do
 
   setup :verify_on_exit!
 
-  describe "translate/2" do
+  describe "translate/3" do
     test "translate single text" do
       response = ~s"""
       {"translations":[{"detected_source_language":"EN","text":"Halo Dunia"}]}
@@ -43,10 +43,9 @@ defmodule Deepl.TextTest do
       {
         "translations": [
           {
-            "detected_source_language":"EN",
-            "text":"Hallo, Welt",
-            "billed_characters":12,
-            "model_type_used":"quality_optimized"
+            "billed_characters": 11,
+            "detected_source_language": "EN",
+            "text": "Halo Dunia"
           }
         ]
       }
@@ -56,23 +55,34 @@ defmodule Deepl.TextTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      options = [
-        source_lang: "EN",
-        context: nil,
-        show_billed_characters: false,
-        split_sentences: 1,
-        preserve_formatting: false,
-        formality: "default",
-        model_type: nil,
-        glossary_id: nil,
-        tag_handling: nil,
-        outline_detection: nil,
-        non_splitting_tags: [],
-        splitting_tags: [],
-        ignore_tags: []
-      ]
+      assert Text.translate("Hello World", "ID", show_billed_characters: true) ==
+               JSON.decode(response)
+    end
+  end
 
-      assert Text.translate("Hello World", "DE", options) == JSON.decode(response)
+  describe "translate!/3" do
+    test "translate single text" do
+      response = ~s"""
+      {"translations":[{"detected_source_language":"EN","text":"Halo Dunia"}]}
+      """
+
+      expect(Deepl.MockRequest, :run_request, fn _request ->
+        {%Req.Request{}, %Req.Response{body: response}}
+      end)
+
+      assert Text.translate!("Hello World", "ID") == JSON.decode!(response)
+    end
+
+    test "raise an error on invalid input" do
+      response = ~s({"message": "Value for 'target_lang' not supported."})
+
+      expect(Deepl.MockRequest, :run_request, fn _request ->
+        {%Req.Request{}, %Req.Response{status: 400, body: response}}
+      end)
+
+      assert_raise RuntimeError, "HTTP Error: [400] " <> JSON.decode!(response)["message"], fn ->
+        Text.translate!("Hello World", "IDS")
+      end
     end
   end
 end
