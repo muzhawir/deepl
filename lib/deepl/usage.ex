@@ -11,8 +11,6 @@ defmodule Deepl.Usage do
 
   alias Req.Request
 
-  @base_url Deepl.base_url!() <> "/v2/usage"
-
   @doc """
   Retrieve current usage and quota information.
 
@@ -27,7 +25,7 @@ defmodule Deepl.Usage do
     {_request, response} =
       [
         method: :get,
-        url: @base_url,
+        url: Deepl.base_url!() <> "/v2/usage",
         headers: required_request_header()
       ]
       |> Request.new()
