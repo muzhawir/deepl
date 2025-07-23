@@ -24,8 +24,6 @@ defmodule Deepl.Text.HTTPRequest do
             splitting_tags: [],
             ignore_tags: []
 
-  @translate_url Deepl.base_url!() <> "/v2/translate"
-
   @doc """
   Sends a translation request to the DeepL API.
 
@@ -43,7 +41,7 @@ defmodule Deepl.Text.HTTPRequest do
     {_request, response} =
       [
         method: :post,
-        url: @translate_url,
+        url: Deepl.base_url!() <> "/v2/translate",
         headers: [{"Content-Type", "application/json"}] ++ required_request_header(),
         body: body
       ]
