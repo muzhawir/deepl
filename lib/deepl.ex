@@ -71,7 +71,7 @@ defmodule Deepl do
   ## Examples
 
       iex> Deepl.base_url!()
-      "https://api-free.deepl.com/v2"
+      "https://api-free.deepl.com"
 
   """
   @spec base_url!() :: String.t()
