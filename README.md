@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://hexdocs.pm/deepl" target="_blank">
-    <img src="./priv/assets/logo/readme-logo.png" width="500" alt="Logo">
+    <img src="./priv/assets/logo/readme-logo.png" width="600" alt="Logo">
   </a>
 </p>
 
