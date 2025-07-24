@@ -6,15 +6,13 @@
 
 # DeepL
 
-> [!WARNING]
-> This package is in active development and considered alpha. APIs and features may change without notice.
-
 [![Hex.pm](https://img.shields.io/hexpm/v/deepl)](https://hex.pm/packages/deepl)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/deepl)](https://hex.pm/packages/deepl)
+[![Elixir CI](https://github.com/muzhawir/deepl/actions/workflows/build.yml/badge.svg)](https://github.com/muzhawir/deepl/actions/workflows/build.yml)
 
 The [DeepL API](https://www.deepl.com/docs-api) provides a way for programs to send texts and
 documents to DeepL's servers and receive high-quality translations and text improvements. This
-enables developers to build a wide range of translation tools using DeepL's leading translation technology.
+enables Elixir developers to build a wide range of translation tools using DeepL's leading translation technology.
 
 `deepl` is a **community-maintained** Elixir package for integrating with the DeepL API.
 

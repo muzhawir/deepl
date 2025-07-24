@@ -31,7 +31,7 @@ defmodule Deepl.MixProject do
   defp docs do
     [
       main: "getting-started",
-      # logo: "priv/assets/logo/doc_logo.svg",
+      logo: "priv/assets/logo/exdoc-logo.png",
       extras: extra_pages()
     ]
   end
