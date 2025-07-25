@@ -1,9 +1,9 @@
-defmodule Deepl.TextTest do
+defmodule Deepl.TranslatorTest do
   use ExUnit.Case, async: true
 
   import Mox
 
-  alias Deepl.Text
+  alias Deepl.Translator
 
   setup :verify_on_exit!
 
@@ -17,7 +17,7 @@ defmodule Deepl.TextTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      assert Text.translate("Hello World", "ID") == JSON.decode(response)
+      assert Translator.translate("Hello World", "ID") == JSON.decode(response)
     end
 
     test "translate multiple text" do
@@ -34,7 +34,7 @@ defmodule Deepl.TextTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      assert Text.translate(["Hello World", "Hello Developer"], "ID") ==
+      assert Translator.translate(["Hello World", "Hello Developer"], "ID") ==
                JSON.decode(response)
     end
 
@@ -55,7 +55,7 @@ defmodule Deepl.TextTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      assert Text.translate("Hello World", "ID", show_billed_characters: true) ==
+      assert Translator.translate("Hello World", "ID", show_billed_characters: true) ==
                JSON.decode(response)
     end
   end
@@ -70,7 +70,7 @@ defmodule Deepl.TextTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      assert Text.translate!("Hello World", "ID") == JSON.decode!(response)
+      assert Translator.translate!("Hello World", "ID") == JSON.decode!(response)
     end
 
     test "raise an error on invalid input" do
@@ -81,7 +81,7 @@ defmodule Deepl.TextTest do
       end)
 
       assert_raise RuntimeError, "HTTP Error: [400] " <> JSON.decode!(response)["message"], fn ->
-        Text.translate!("Hello World", "IDS")
+        Translator.translate!("Hello World", "IDS")
       end
     end
   end

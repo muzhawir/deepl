@@ -1,11 +1,11 @@
-defmodule Deepl.Text do
+defmodule Deepl.Translator do
   @moduledoc """
-  Module for translating text using the DeepL API.
+  Translates the given text to the target language.
   """
   @moduledoc since: "0.1.0"
 
   alias Deepl.HTTPHelper
-  alias Deepl.Text.TranslateRequest
+  alias Deepl.Translator.TranslateRequest
 
   @type text :: binary() | list(binary())
 

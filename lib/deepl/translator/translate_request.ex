@@ -1,4 +1,4 @@
-defmodule Deepl.Text.TranslateRequest do
+defmodule Deepl.Translator.TranslateRequest do
   @moduledoc false
   @moduledoc since: "0.1.0"
 
