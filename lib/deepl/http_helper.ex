@@ -14,6 +14,18 @@ defmodule Deepl.HTTPHelper do
   end
 
   @doc """
+  Create optional body from keyword list.
+
+  Filters the keyword list to include only keys that are present in the struct and returns a map.
+  """
+  @spec create_optional_body_content(Keyword.t(), struct()) :: map()
+  def create_optional_body_content(keyword, struct) do
+    keyword
+    |> Keyword.filter(fn {k, _v} -> k in Map.keys(struct) end)
+    |> Map.new()
+  end
+
+  @doc """
   Handles the response from the DeepL API.
 
   It decodes the JSON body and returns a tuple with the status and decoded body.

@@ -4,6 +4,7 @@ defmodule Deepl.Translator.TranslateRequest do
 
   import Deepl.HTTPHelper, only: [required_request_header: 0]
 
+  alias Deepl.HTTPHelper
   alias Req.Request
 
   @type text :: binary() | list(binary())
@@ -32,9 +33,10 @@ defmodule Deepl.Translator.TranslateRequest do
   @spec post_translate(text(), binary(), Keyword.t()) :: Req.Response.t() | Exception.t()
   def post_translate(text, target_lang, opts \\ []) do
     body =
-      %__MODULE__{}
-      |> struct!(create_body_content(text, target_lang, opts))
-      |> Map.from_struct()
+      opts
+      |> HTTPHelper.create_optional_body_content(%__MODULE__{})
+      |> Map.put(:text, List.flatten([text]))
+      |> Map.put(:target_lang, target_lang)
       |> Map.reject(fn {_k, v} -> is_nil(v) or v == [] end)
       |> JSON.encode!()
 
@@ -49,20 +51,5 @@ defmodule Deepl.Translator.TranslateRequest do
       |> Deepl.Request.run_request()
 
     response
-  end
-
-  @doc """
-  Creates the body content for the translation post request.
-
-  Prepares the request body based on the provided text, target language, and optional data from
-  the struct.
-  """
-  @spec create_body_content(text(), binary(), Keyword.t()) :: map()
-  def create_body_content(text, target_lang, opts \\ []) do
-    opts
-    |> Keyword.filter(fn {k, _v} -> k in Map.keys(%__MODULE__{}) end)
-    |> Keyword.put(:text, List.flatten([text]))
-    |> Keyword.put(:target_lang, target_lang)
-    |> Map.new()
   end
 end
