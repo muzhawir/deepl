@@ -5,7 +5,7 @@ defmodule Deepl.Text do
   @moduledoc since: "0.1.0"
 
   alias Deepl.HTTPHelper
-  alias Deepl.Text.HTTPRequest
+  alias Deepl.Text.TranslateRequest
 
   @type text :: binary() | list(binary())
 
@@ -46,10 +46,27 @@ defmodule Deepl.Text do
 
   """
   @spec translate(text(), binary(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}
-  def translate(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
-    response = HTTPRequest.post_translate(text, target_lang, opts)
+  def translate(text, target_lang, opts \\ [])
+
+  def translate(text, target_lang, opts) when is_binary(text) do
+    response = TranslateRequest.post_translate(text, target_lang, opts)
 
     HTTPHelper.response(response.status, response.body)
+  end
+
+  def translate(text, target_lang, opts) when is_list(text) do
+    case Enum.count(text) do
+      count when count > 0 or count <= 50 ->
+        response = TranslateRequest.post_translate(text, target_lang, opts)
+
+        HTTPHelper.response(response.status, response.body)
+
+      0 ->
+        {:error, "Text list cannot be empty"}
+
+      _ ->
+        {:error, "Text list cannot exceed 50 items"}
+    end
   end
 
   @doc """
@@ -58,9 +75,26 @@ defmodule Deepl.Text do
   This function like `translate/3`, but raises an error if the translation fails.
   """
   @spec translate!(text(), binary(), Keyword.t()) :: map() | Exception.t()
-  def translate!(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
-    response = HTTPRequest.post_translate(text, target_lang, opts)
+  def translate!(text, target_lang, opts \\ [])
+
+  def translate!(text, target_lang, opts) when is_binary(text) do
+    response = TranslateRequest.post_translate(text, target_lang, opts)
 
     HTTPHelper.response!(response.status, response.body)
+  end
+
+  def translate!(text, target_lang, opts) when is_list(text) do
+    case Enum.count(text) do
+      count when count > 0 and count <= 50 ->
+        response = TranslateRequest.post_translate(text, target_lang, opts)
+
+        HTTPHelper.response!(response.status, response.body)
+
+      0 ->
+        raise ArgumentError, "Text list cannot be empty"
+
+      _ ->
+        raise ArgumentError, "Text list cannot exceed 50 items"
+    end
   end
 end
