@@ -58,6 +58,17 @@ defmodule Deepl.TranslatorTest do
       assert Translator.translate("Hello World", "ID", show_billed_characters: true) ==
                JSON.decode(response)
     end
+
+    test "return {:error, reason} on invalid input" do
+      response = ~s({"message": "Value for 'target_lang' not supported."})
+
+      expect(Deepl.MockRequest, :run_request, fn _request ->
+        {%Req.Request{}, %Req.Response{status: 400, body: response}}
+      end)
+
+      assert Translator.translate("Hello World", "IDS") ==
+               {:error, "[400] " <> JSON.decode!(response)["message"]}
+    end
   end
 
   describe "translate!/3" do
