@@ -2,6 +2,7 @@
 
 [![Hex.pm](https://img.shields.io/hexpm/v/deepl)](https://hex.pm/packages/deepl)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/deepl)](https://hex.pm/packages/deepl)
+[![Elixir CI](https://github.com/muzhawir/deepl/actions/workflows/build.yml/badge.svg)](https://github.com/muzhawir/deepl/actions/workflows/build.yml)
 
 The [DeepL API](https://www.deepl.com/docs-api) provides a way for programs to send texts and
 documents to DeepL's servers and receive high-quality translations and text improvements. This
@@ -11,24 +12,22 @@ enables developers to build a wide range of translation tools using DeepL's lead
 
 ## Requirements
 
-To use `deepl`, your environment must meet these requirements:
-
-- **Erlang**: Version `27.0` or later
-- **Elixir**: Version `1.18.0-otp-27` or later
+- Erlang: `27.0` or newer
+- Elixir: `1.18.0-otp-27` or newer
 
 ## Installation
 
-Add `deepl` to the dependencies in your `mix.exs` file:
+Add `deepl` to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
   [
-    {:deepl, "~> 0.1.2"}
+    {:deepl, "~> 0.2.0"}
   ]
 end
 ```
 
-Fetch the dependencies by running:
+Then fetch dependencies:
 
 ```sh
 mix deps.get
@@ -36,8 +35,7 @@ mix deps.get
 
 ## Authentication
 
-To use the API, you need an authentication key, which you can find in the
-[API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account. You can translate up to 500,000 characters per month for free.
+Get your authentication key from the [API Keys section](https://www.deepl.com/en/your-account/keys) of your DeepL account. Free tier allows up to 500,000 characters per month.
 
 Set the key in your config:
 
@@ -46,7 +44,7 @@ Set the key in your config:
 config :deepl, api_key: "your-api-key"
 ```
 
-Alternatively, set it at runtime:
+Or set it at runtime:
 
 ```elixir
 iex> Deepl.set_api_key("your-api-key")
@@ -55,11 +53,10 @@ iex> Deepl.set_api_key("your-api-key")
 
 ## Usage
 
-Complete usage examples can be found in each module's documentation. See the
-[API Reference](https://hexdocs.pm/deepl/api-reference.html) page. Below are some basic examples
-to get you started.
+See the [API Reference](https://hexdocs.pm/deepl/api-reference.html) for full examples.
+Here are some basics:
 
-Translate a text:
+**Translate text:**
 
 ```elixir
 iex> Deepl.Translator.translate("Hello World", "ID")
@@ -71,7 +68,7 @@ iex> Deepl.Translator.translate("Hello World", "ID")
  }}
 ```
 
-Rephrase a text:
+**Rephrase text:**
 
 ```elixir
 iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
@@ -87,7 +84,7 @@ iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
  }}
 ```
 
-Retrieve usage and quota information:
+**Get usage and quota:**
 
 ```elixir
 iex> Deepl.Usage.get()
@@ -100,4 +97,4 @@ iex> Deepl.Usage.get()
 
 ## License
 
-This package is licensed under the [MIT License](https://github.com/muzhawir/deepl/blob/main/LICENSE.md).
+Licensed under the [MIT License](https://github.com/muzhawir/deepl/blob/main/LICENSE.md).

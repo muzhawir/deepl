@@ -30,11 +30,10 @@ To install `deepl`, follow the instructions in the
 
 ## Usage
 
-Complete usage examples can be found in each module's documentation. See the
-[API Reference](https://hexdocs.pm/deepl/api-reference.html) page. Below are some basic examples
-to get you started.
+See the [API Reference](https://hexdocs.pm/deepl/api-reference.html) for full examples.
+Here are some basics:
 
-Translate a text:
+**Translate text:**
 
 ```elixir
 iex> Deepl.Translator.translate("Hello World", "ID")
@@ -46,7 +45,7 @@ iex> Deepl.Translator.translate("Hello World", "ID")
  }}
 ```
 
-Rephrase a text:
+**Rephrase text:**
 
 ```elixir
 iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
@@ -62,7 +61,7 @@ iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
  }}
 ```
 
-Retrieve usage and quota information:
+**Get usage and quota:**
 
 ```elixir
 iex> Deepl.Usage.get()

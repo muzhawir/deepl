@@ -3,22 +3,24 @@ defmodule Deepl.HTTPHelperTest do
 
   alias Deepl.HTTPHelper
 
-  describe "required_request_header/1" do
+  describe "required_request_headers/1" do
     test "Return required header list" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
 
-      assert HTTPHelper.required_request_header() == [
+      assert HTTPHelper.required_request_headers() == [
                {"Accept", "application/json"},
-               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"}
+               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"},
+               {"Content-Type", "application/json"}
              ]
     end
 
     test "Return required header list with custom accept header" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
 
-      assert HTTPHelper.required_request_header(accept: "text/plain") == [
+      assert HTTPHelper.required_request_headers(accept: "text/plain") == [
                {"Accept", "text/plain"},
-               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"}
+               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"},
+               {"Content-Type", "application/json"}
              ]
     end
   end

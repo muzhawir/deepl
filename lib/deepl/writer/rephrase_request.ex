@@ -2,7 +2,7 @@ defmodule Deepl.Writer.RephraseRequest do
   @moduledoc false
   @moduledoc since: "0.1.3"
 
-  import Deepl.HTTPHelper, only: [required_request_header: 0]
+  import Deepl.HTTPHelper, only: [required_request_headers: 0]
 
   alias Deepl.HTTPHelper
   alias Req.Request
@@ -11,6 +11,11 @@ defmodule Deepl.Writer.RephraseRequest do
 
   defstruct text: nil, target_lang: nil, writing_style: nil, tone: nil
 
+  @doc """
+  Sends a rephrasing request to the DeepL API.
+
+  Constructs a request to rephrase the provided text in the specified target language.
+  """
   @spec post_rephrase(text(), String.t(), Keyword.t()) :: Req.Response.t() | Exception.t()
   def post_rephrase(text, target_lang, opts \\ []) do
     body =
@@ -25,7 +30,7 @@ defmodule Deepl.Writer.RephraseRequest do
       [
         method: :post,
         url: Deepl.base_url!() <> "/v2/write/rephrase",
-        headers: [{"Content-Type", "application/json"} | required_request_header()],
+        headers: required_request_headers(),
         body: body
       ]
       |> Request.new()
