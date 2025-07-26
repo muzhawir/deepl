@@ -1,9 +1,9 @@
 defmodule Deepl.Usage do
   @moduledoc """
-  Module for retrieving usage and quota for the current billing period with the DeepL API.
+  Provides function to retrieve usage and quota information.
 
-  For more information, refer to the retrieve usage and quota
-  [documentation](https://developers.deepl.com/api-reference/usage-and-quota).
+  API references for this module can be found in the
+  [Retrieve usage & quota documentation](https://developers.deepl.com/api-reference/usage-and-quota).
   """
   @moduledoc since: "0.0.1"
 
@@ -12,7 +12,10 @@ defmodule Deepl.Usage do
   alias Req.Request
 
   @doc """
-  Retrieve current usage and quota information.
+  Get the usage and quota information for current API key.
+
+  Returns usage and quota information, the output depends on the type of API key used
+  (Free or Pro).
 
   ## Examples
 
