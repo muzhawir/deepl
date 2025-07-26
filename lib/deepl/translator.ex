@@ -71,7 +71,7 @@ defmodule Deepl.Translator do
   @doc """
   Translates a single or multiple texts to the specified target language.
 
-  This function like `translate/3`, but raises an error if the translation fails.
+  This function behaves like `translate/3`, but raises an error if the translation fails.
   """
   @spec translate!(text(), String.t(), Keyword.t()) :: map()
   def translate!(text, target_lang, opts \\ [])

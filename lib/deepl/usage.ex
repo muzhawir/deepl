@@ -32,7 +32,7 @@ defmodule Deepl.Usage do
          "api_key_character_limit" => 1000000000000,
          "character_count" => 3000,
          "character_limit" => 1000000000000,
-         "end_time" => "2025-05-30T00:12:32Z",
+         "end_time" => "2025-06-30T00:12:32Z",
          "products" => [
            %{
              "api_key_character_count" => 1000,
@@ -45,7 +45,7 @@ defmodule Deepl.Usage do
              "product_type" => "translate"
            }
          ],
-         "start_time" => "2025-06-30T00:12:32Z"
+         "start_time" => "2025-05-30T00:12:32Z"
        }}
 
   """
