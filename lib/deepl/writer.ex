@@ -7,7 +7,7 @@ defmodule Deepl.Writer do
 
   Provides functions to rephrase text.
   """
-  @moduledoc since: "0.1.3"
+  @moduledoc since: "0.2.0"
 
   alias Deepl.HTTPHelper
   alias Deepl.Writer.RephraseRequest
