@@ -2,6 +2,7 @@
 
 [![Hex.pm](https://img.shields.io/hexpm/v/deepl)](https://hex.pm/packages/deepl)
 [![Hex.pm Downloads](https://img.shields.io/hexpm/dt/deepl)](https://hex.pm/packages/deepl)
+[![Elixir CI](https://github.com/muzhawir/deepl/actions/workflows/build.yml/badge.svg)](https://github.com/muzhawir/deepl/actions/workflows/build.yml)
 
 The [DeepL API](https://www.deepl.com/docs-api) provides a way for programs to send texts and
 documents to DeepL's servers and receive high-quality translations and text improvements. This
