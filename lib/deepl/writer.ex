@@ -28,18 +28,23 @@ defmodule Deepl.Writer do
 
   The accepted options are:
 
-  - `writing_style` - Changes the writing style of your improvements.
-  - `tone` - Changes the tone of your improvements.
+  - `writing_style` - Changes the writing style of your improvements, the value must be a string.
+  - `tone` - Changes the tone of your improvements, the value must be a string.
+
+  > #### Using `writing_style` and `tone` {: .error}
+  >
+  > It’s not possible to include both `writing_style` and `tone` in a request; only one or the
+  > other can be included, if you include both, the response will be an error.
 
   The values for `writing_style` can be:
 
   - `simple`, `business`, `academic`, `casual`, `default`, `prefer_simple`, `prefer_business`,
-  `prefer_academic`, `prefer_casual`.
+    `prefer_academic`, `prefer_casual`.
 
   The values for `tone` can be:
 
   - `friendly`, `enthusiastic`, `confident`, `diplomatic`, `default`, `prefer_enthusiastic`,
-  `prefer_friendly`, `prefer_confident`, `prefer_diplomatic`.
+    `prefer_friendly`, `prefer_confident`, `prefer_diplomatic`.
 
   ## Examples
 

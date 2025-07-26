@@ -2,12 +2,12 @@ defmodule Deepl.Usage do
   @moduledoc """
   Provides function to retrieve usage and quota information.
 
-  API references for this module can be found in the
-  [Retrieve usage & quota documentation](https://developers.deepl.com/api-reference/usage-and-quota).
+  API references for this module can be found in the Retrieve usage & quota
+  [documentation](https://developers.deepl.com/api-reference/usage-and-quota).
   """
   @moduledoc since: "0.0.1"
 
-  import Deepl.HTTPHelper, only: [required_request_header: 0, response: 2]
+  import Deepl.HTTPHelper, only: [required_request_headers: 0, response: 2]
 
   alias Req.Request
 
@@ -58,7 +58,7 @@ defmodule Deepl.Usage do
       [
         method: :get,
         url: Deepl.base_url!() <> "/v2/usage",
-        headers: required_request_header()
+        headers: required_request_headers()
       ]
       |> Request.new()
       |> Deepl.Request.run_request()
