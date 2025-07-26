@@ -55,36 +55,46 @@ iex> Deepl.set_api_key("your-api-key")
 
 ## Usage
 
+Complete usage examples can be found in each module's documentation. See the
+[API Reference](https://hexdocs.pm/deepl/api-reference.html) page. Below are some basic examples
+to get you started.
+
 Translate a text:
 
 ```elixir
-iex> Deepl.Text.translate("Hello World", "ID")
+iex> Deepl.Translator.translate("Hello World", "ID")
 {:ok,
  %{
    "translations" => [
      %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
    ]
  }}
+```
 
-iex> Deepl.Text.translate(["Hello World", "Hello Developer"], "ID")
+Rephrase a text:
+
+```elixir
+iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
 {:ok,
  %{
-   "translations" => [
-     %{"detected_source_language" => "EN", "text" => "Halo Dunia"},
-     %{"detected_source_language" => "EN", "text" => "Halo Pengembang"}
-   ]
- }}
-
-iex> Deepl.Text.translate("Hello World", "ID", show_billed_characters: true)
-{:ok,
- %{
-   "translations" => [
+   "improvements" => [
      %{
-       "billed_characters" => 11,
-       "detected_source_language" => "EN",
-       "text" => "Halo Dunia"
+       "detected_source_language" => "en",
+       "target_language" => "en-US",
+       "text" => "This is a sample sentence to improve"
      }
    ]
+ }}
+```
+
+Retrieve usage and quota information:
+
+```elixir
+iex> Deepl.Usage.get()
+{:ok,
+ %{
+   "character_count": 100,
+   "character_limit": 500000
  }}
 ```
 

@@ -16,8 +16,37 @@ defmodule Deepl.Usage do
 
   ## Examples
 
+      # This is an example output for Free plan
       iex> Deepl.Usage.get()
-      %{"character_count": 100, "character_limit": 500000}
+      {:ok,
+       %{
+         "character_count": 100,
+         "character_limit": 500000
+       }}
+
+      # This is an example output for Pro plan
+      iex> Deepl.Usage.get()
+      {:ok,
+       %{
+         "api_key_character_count" => 3000,
+         "api_key_character_limit" => 1000000000000,
+         "character_count" => 3000,
+         "character_limit" => 1000000000000,
+         "end_time" => "2025-06-30T00:12:32Z",
+         "products" => [
+           %{
+             "api_key_character_count" => 1000,
+             "character_count" => 1000,
+             "product_type" => "write"
+           },
+           %{
+             "api_key_character_count" => 2000,
+             "character_count" => 2000,
+             "product_type" => "translate"
+           }
+         ],
+         "start_time" => "2025-05-30T00:12:32Z"
+       }}
 
   """
   @spec get() :: {:ok, map()} | {:error, String.t()}

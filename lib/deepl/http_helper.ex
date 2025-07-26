@@ -14,6 +14,19 @@ defmodule Deepl.HTTPHelper do
   end
 
   @doc """
+  Filters a keyword list to only include keys that are present in the given struct.
+
+  This function ensures that only valid options for the struct are included in the final map
+  before sending a request to the DeepL API.
+  """
+  @spec filter_keyword_by_struct_keys(Keyword.t(), struct()) :: map()
+  def filter_keyword_by_struct_keys(keyword, struct) do
+    keyword
+    |> Keyword.filter(fn {k, _v} -> k in Map.keys(struct) end)
+    |> Map.new()
+  end
+
+  @doc """
   Handles the response from the DeepL API.
 
   It decodes the JSON body and returns a tuple with the status and decoded body.
