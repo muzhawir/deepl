@@ -44,7 +44,7 @@ defmodule Deepl.Translator.TranslateRequest do
       [
         method: :post,
         url: Deepl.base_url!() <> "/v2/translate",
-        headers: [{"Content-Type", "application/json"}] ++ required_request_header(),
+        headers: [{"Content-Type", "application/json"} | required_request_header()],
         body: body
       ]
       |> Request.new()

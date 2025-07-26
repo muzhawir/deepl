@@ -45,7 +45,7 @@ defmodule Deepl.Translator do
       }}
 
   """
-  @spec translate(text(), binary(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}
+  @spec translate(text(), String.t(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}
   def translate(text, target_lang, opts \\ [])
 
   def translate(text, target_lang, opts) when is_binary(text) do
@@ -74,7 +74,7 @@ defmodule Deepl.Translator do
 
   This function like `translate/3`, but raises an error if the translation fails.
   """
-  @spec translate!(text(), binary(), Keyword.t()) :: map() | Exception.t()
+  @spec translate!(text(), String.t(), Keyword.t()) :: map() | Exception.t()
   def translate!(text, target_lang, opts \\ [])
 
   def translate!(text, target_lang, opts) when is_binary(text) do
