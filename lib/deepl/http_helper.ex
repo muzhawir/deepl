@@ -14,12 +14,13 @@ defmodule Deepl.HTTPHelper do
   end
 
   @doc """
-  Create optional body from keyword list.
+  Filters a keyword list to only include keys that are present in the given struct.
 
-  Filters the keyword list to include only keys that are present in the struct and returns a map.
+  This function ensures that only valid options for the struct are included in the final map
+  before sending a request to the DeepL API.
   """
-  @spec create_optional_body_content(Keyword.t(), struct()) :: map()
-  def create_optional_body_content(keyword, struct) do
+  @spec filter_keyword_by_struct_keys(Keyword.t(), struct()) :: map()
+  def filter_keyword_by_struct_keys(keyword, struct) do
     keyword
     |> Keyword.filter(fn {k, _v} -> k in Map.keys(struct) end)
     |> Map.new()

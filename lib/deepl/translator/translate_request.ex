@@ -34,7 +34,7 @@ defmodule Deepl.Translator.TranslateRequest do
   def post_translate(text, target_lang, opts \\ []) do
     body =
       opts
-      |> HTTPHelper.create_optional_body_content(%__MODULE__{})
+      |> HTTPHelper.filter_keyword_by_struct_keys(%__MODULE__{})
       |> Map.put(:text, List.flatten([text]))
       |> Map.put(:target_lang, target_lang)
       |> Map.reject(fn {_k, v} -> is_nil(v) or v == [] end)
