@@ -1,11 +1,14 @@
 defmodule Deepl.Writer do
   @moduledoc """
+  Provides functions to rephrase text.
+
+  API references for this module can be found in the
+  [Improve text documentation](https://developers.deepl.com/api-reference/improve-text).
+
   > #### DeepL API Pro Subscription {: .info}
   >
-  > **DeepL API for Write** requires a Pro subscription, ensure you use Pro API key for using
-  > functions in this module.
-
-  Provides functions to rephrase text.
+  > **DeepL API for Write** requires a Pro subscription. Ensure you use a Pro API key to access
+  > the functions in this module.
   """
   @moduledoc since: "0.2.0"
 
@@ -17,7 +20,26 @@ defmodule Deepl.Writer do
   @doc """
   Rephrases the given text to the target language.
 
-  The `text` parameter can be a single string or a list of strings.
+  The `text` parameter can be a single string or a list of strings, and the `target_lang`
+  parameter available languages can be found in the Improve text
+  [documentation](https://developers.deepl.com/api-reference/improve-text#param-target-lang).
+
+  ## Options
+
+  The accepted options are:
+
+  - `writing_style` - Changes the writing style of your improvements.
+  - `tone` - Changes the tone of your improvements.
+
+  The values for `writing_style` can be:
+
+  - `simple`, `business`, `academic`, `casual`, `default`, `prefer_simple`, `prefer_business`,
+  `prefer_academic`, `prefer_casual`.
+
+  The values for `tone` can be:
+
+  - `friendly`, `enthusiastic`, `confident`, `diplomatic`, `default`, `prefer_enthusiastic`,
+  `prefer_friendly`, `prefer_confident`, `prefer_diplomatic`.
 
   ## Examples
 
