@@ -67,7 +67,7 @@ defmodule Deepl.Writer do
 
   This function behaves like `rephrase/3`, but raises an error if the rephrasing fails.
   """
-  @spec rephrase!(text(), String.t(), Keyword.t()) :: map() | Exception.t()
+  @spec rephrase!(text(), String.t(), Keyword.t()) :: map()
   def rephrase!(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
     response = RephraseRequest.post_rephrase(text, target_lang, opts)
 

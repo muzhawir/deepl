@@ -55,7 +55,7 @@ defmodule Deepl.Translator do
 
   def translate(text, target_lang, opts) when is_list(text) do
     case Enum.count(text) do
-      count when count > 0 or count <= 50 ->
+      count when count > 0 and count <= 50 ->
         response = TranslateRequest.post_translate(text, target_lang, opts)
 
         HTTPHelper.response(response.status, response.body)
@@ -73,7 +73,7 @@ defmodule Deepl.Translator do
 
   This function like `translate/3`, but raises an error if the translation fails.
   """
-  @spec translate!(text(), String.t(), Keyword.t()) :: map() | Exception.t()
+  @spec translate!(text(), String.t(), Keyword.t()) :: map()
   def translate!(text, target_lang, opts \\ [])
 
   def translate!(text, target_lang, opts) when is_binary(text) do

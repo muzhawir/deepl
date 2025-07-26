@@ -2,7 +2,7 @@
 
 ## 0.1.3 (2025-07-26)
 
-- Added `Deepl.Write` module for rephrasing text.
+- Added `Deepl.Writer` module for rephrasing text.
 
 ## 0.1.2 (2025-07-20)
 
