@@ -3,18 +3,19 @@ defmodule Deepl.HTTPHelper do
   @moduledoc since: "0.1.0"
 
   @doc """
-  Returns the required headers for Deepl API requests.
+  Returns the required headers for a DeepL API request.
   """
-  @spec required_request_header(Keyword.t()) :: list(tuple())
-  def required_request_header(opts \\ []) do
+  @spec required_request_headers(Keyword.t()) :: list(tuple())
+  def required_request_headers(opts \\ []) do
     [
       {"Accept", Keyword.get(opts, :accept, "application/json")},
-      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
+      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()},
+      {"Content-Type", Keyword.get(opts, :content_type, "application/json")}
     ]
   end
 
   @doc """
-  Filters a keyword list to only include keys that are present in the given struct.
+  Filters keywords by the keys of a given struct.
 
   This function ensures that only valid options for the struct are included in the final map
   before sending a request to the DeepL API.
@@ -48,8 +49,8 @@ defmodule Deepl.HTTPHelper do
   @doc """
   Handles the response from the DeepL API.
 
-  It decodes the JSON body and returns the decoded body on success, or raises an exception on
-  error.
+  This function behaves like `response/2`, but raises an exception if the response is not
+  successful.
   """
   @spec response!(non_neg_integer(), binary()) :: map() | Exception.t()
   def response!(status, body) do

@@ -2,7 +2,7 @@ defmodule Deepl.Translator.TranslateRequest do
   @moduledoc false
   @moduledoc since: "0.1.0"
 
-  import Deepl.HTTPHelper, only: [required_request_header: 0]
+  import Deepl.HTTPHelper, only: [required_request_headers: 0]
 
   alias Deepl.HTTPHelper
   alias Req.Request
@@ -44,7 +44,7 @@ defmodule Deepl.Translator.TranslateRequest do
       [
         method: :post,
         url: Deepl.base_url!() <> "/v2/translate",
-        headers: [{"Content-Type", "application/json"} | required_request_header()],
+        headers: required_request_headers(),
         body: body
       ]
       |> Request.new()
