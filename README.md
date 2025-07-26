@@ -30,11 +30,47 @@ To install `deepl`, follow the instructions in the
 
 ## Usage
 
+Complete usage examples can be found in each module's documentation. See the
+[API Reference](https://hexdocs.pm/deepl/api-reference.html) page. Below are some basic examples
+to get you started.
+
 Translate a text:
 
 ```elixir
-iex> Deepl.Text.translate("Hello World", "ID")
+iex> Deepl.Translator.translate("Hello World", "ID")
+{:ok,
+ %{
+   "translations" => [
+     %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
+   ]
+ }}
+```
 
+Rephrase a text:
+
+```elixir
+iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
+{:ok,
+ %{
+   "improvements" => [
+     %{
+       "detected_source_language" => "en",
+       "target_language" => "en-US",
+       "text" => "This is a sample sentence to improve"
+     }
+   ]
+ }}
+```
+
+Retrieve usage and quota information:
+
+```elixir
+iex> Deepl.Usage.get()
+{:ok,
+ %{
+   "character_count": 100,
+   "character_limit": 500000
+ }}
 ```
 
 ## License
