@@ -16,33 +16,32 @@ defmodule Deepl.Translator do
 
   ## Examples
 
-      iex> Deepl.Text.translate("Hello World", "ID")
-      %{
-        "translations" => [
-          %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
-        ]
-      }}
-
-      iex> Deepl.Text.translate(["Hello World", "Hello Developer"], "ID")
+      iex> Deepl.Translator.translate("Hello World", "ID")
       {:ok,
-      %{
-        "translations" => [
-          %{"detected_source_language" => "EN", "text" => "Halo Dunia"},
-          %{"detected_source_language" => "EN", "text" => "Halo Pengembang"}
-        ]
-      }}
+       %{
+         "translations" => [
+           %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
+         ]
+       }}
 
-      iex> Deepl.Text.translate("Hello World", "ID", show_billed_characters: true)
+      iex> Deepl.Translator.translate(
+      ...>  ["Hello World", "Hello Developer"], "ID", show_billed_characters: true
+      ...> )
       {:ok,
-      %{
-        "translations" => [
-          %{
-            "billed_characters" => 11,
-            "detected_source_language" => "EN",
-            "text" => "Halo Dunia"
-          }
-        ]
-      }}
+       %{
+         "translations" => [
+           %{
+             "billed_characters" => 11,
+             "detected_source_language" => "EN",
+             "text" => "Halo Dunia"
+           },
+           %{
+             "billed_characters" => 15,
+             "detected_source_language" => "EN",
+             "text" => "Halo Pengembang"
+           }
+         ]
+       }}
 
   """
   @spec translate(text(), String.t(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}

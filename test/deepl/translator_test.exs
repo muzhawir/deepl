@@ -10,7 +10,11 @@ defmodule Deepl.TranslatorTest do
   describe "translate/3" do
     test "translate single text" do
       response = ~s"""
-      {"translations":[{"detected_source_language":"EN","text":"Halo Dunia"}]}
+      {
+        "translations": [
+          {"detected_source_language": "EN", "text": "Halo Dunia"}
+        ]
+      }
       """
 
       expect(Deepl.MockRequest, :run_request, fn _request ->
@@ -20,25 +24,7 @@ defmodule Deepl.TranslatorTest do
       assert Translator.translate("Hello World", "ID") == JSON.decode(response)
     end
 
-    test "translate multiple text" do
-      response = ~s"""
-      {
-        "translations":[
-          {"detected_source_language":"EN","text":"Halo Dunia"},
-          {"detected_source_language":"EN","text":"Halo Pengembang"}
-        ]
-      }
-      """
-
-      expect(Deepl.MockRequest, :run_request, fn _request ->
-        {%Req.Request{}, %Req.Response{body: response}}
-      end)
-
-      assert Translator.translate(["Hello World", "Hello Developer"], "ID") ==
-               JSON.decode(response)
-    end
-
-    test "translate text with optional options" do
+    test "translate multiple text with options" do
       response = ~s"""
       {
         "translations": [
@@ -46,6 +32,11 @@ defmodule Deepl.TranslatorTest do
             "billed_characters": 11,
             "detected_source_language": "EN",
             "text": "Halo Dunia"
+          },
+          {
+            "billed_characters": 15,
+            "detected_source_language": "EN",
+            "text": "Halo Pengembang"
           }
         ]
       }
@@ -55,12 +46,17 @@ defmodule Deepl.TranslatorTest do
         {%Req.Request{}, %Req.Response{body: response}}
       end)
 
-      assert Translator.translate("Hello World", "ID", show_billed_characters: true) ==
-               JSON.decode(response)
+      assert Translator.translate(["Hello World", "Hello Developer"], "ID",
+               show_billed_characters: true
+             ) == JSON.decode(response)
     end
 
     test "return {:error, reason} on invalid input" do
-      response = ~s({"message": "Value for 'target_lang' not supported."})
+      response = ~s"""
+      {
+        "message": "Value for 'target_lang' not supported."
+      }
+      """
 
       expect(Deepl.MockRequest, :run_request, fn _request ->
         {%Req.Request{}, %Req.Response{status: 400, body: response}}
@@ -74,7 +70,11 @@ defmodule Deepl.TranslatorTest do
   describe "translate!/3" do
     test "translate single text" do
       response = ~s"""
-      {"translations":[{"detected_source_language":"EN","text":"Halo Dunia"}]}
+      {
+        "translations": [
+          {"detected_source_language": "EN", "text": "Halo Dunia"}
+        ]
+      }
       """
 
       expect(Deepl.MockRequest, :run_request, fn _request ->
@@ -85,7 +85,11 @@ defmodule Deepl.TranslatorTest do
     end
 
     test "raise an error on invalid input" do
-      response = ~s({"message": "Value for 'target_lang' not supported."})
+      response = ~s"""
+      {
+        "message": "Value for 'target_lang' not supported."
+      }
+      """
 
       expect(Deepl.MockRequest, :run_request, fn _request ->
         {%Req.Request{}, %Req.Response{status: 400, body: response}}

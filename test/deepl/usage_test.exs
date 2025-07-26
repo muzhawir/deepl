@@ -11,13 +11,18 @@ defmodule Deepl.UsageTest do
 
   describe "get/0" do
     test "returns usage information" do
-      json = ~s"{\"character_count\":100,\"character_limit\":500000}"
+      response = ~s"""
+      {
+        "character_count": 100,
+        "character_limit": 500000
+      }
+      """
 
       expect(Deepl.MockRequest, :run_request, fn _request ->
-        {%Request{}, %Response{body: json}}
+        {%Request{}, %Response{body: response}}
       end)
 
-      assert Usage.get() == {:ok, JSON.decode!(json)}
+      assert Usage.get() == {:ok, JSON.decode!(response)}
     end
   end
 end

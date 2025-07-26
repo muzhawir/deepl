@@ -34,33 +34,7 @@ Translate a text:
 
 ```elixir
 iex> Deepl.Text.translate("Hello World", "ID")
-{:ok,
- %{
-   "translations" => [
-     %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
-   ]
- }}
 
-iex> Deepl.Text.translate(["Hello World", "Hello Developer"], "ID")
-{:ok,
- %{
-   "translations" => [
-     %{"detected_source_language" => "EN", "text" => "Halo Dunia"},
-     %{"detected_source_language" => "EN", "text" => "Halo Pengembang"}
-   ]
- }}
-
-iex> Deepl.Text.translate("Hello World", "ID", show_billed_characters: true)
-{:ok,
- %{
-   "translations" => [
-     %{
-       "billed_characters" => 11,
-       "detected_source_language" => "EN",
-       "text" => "Halo Dunia"
-     }
-   ]
- }}
 ```
 
 ## License
