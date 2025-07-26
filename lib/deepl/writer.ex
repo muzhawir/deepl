@@ -84,9 +84,13 @@ defmodule Deepl.Writer do
   """
   @spec rephrase(text(), String.t(), Keyword.t()) :: {:ok, map()} | {:error, String.t()}
   def rephrase(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
-    response = RephraseRequest.post_rephrase(text, target_lang, opts)
+    if Keyword.has_key?(opts, :tone) && Keyword.has_key?(opts, :writing_style) do
+      {:error, "Cannot include both tone and writing_style options"}
+    else
+      response = RephraseRequest.post_rephrase(text, target_lang, opts)
 
-    HTTPHelper.response(response.status, response.body)
+      HTTPHelper.response(response.status, response.body)
+    end
   end
 
   @doc """
@@ -96,8 +100,12 @@ defmodule Deepl.Writer do
   """
   @spec rephrase!(text(), String.t(), Keyword.t()) :: map()
   def rephrase!(text, target_lang, opts \\ []) when is_binary(text) or is_list(text) do
-    response = RephraseRequest.post_rephrase(text, target_lang, opts)
+    if Keyword.has_key?(opts, :tone) && Keyword.has_key?(opts, :writing_style) do
+      raise ArgumentError, "Cannot include both tone and writing_style options"
+    else
+      response = RephraseRequest.post_rephrase(text, target_lang, opts)
 
-    HTTPHelper.response!(response.status, response.body)
+      HTTPHelper.response!(response.status, response.body)
+    end
   end
 end

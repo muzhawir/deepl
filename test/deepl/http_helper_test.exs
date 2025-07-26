@@ -3,7 +3,7 @@ defmodule Deepl.HTTPHelperTest do
 
   alias Deepl.HTTPHelper
 
-  describe "required_request_header/1" do
+  describe "required_request_headers/1" do
     test "Return required header list" do
       Application.put_env(:deepl, :api_key, "wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx")
 

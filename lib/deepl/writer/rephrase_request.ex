@@ -12,9 +12,9 @@ defmodule Deepl.Writer.RephraseRequest do
   defstruct text: nil, target_lang: nil, writing_style: nil, tone: nil
 
   @doc """
-  Sends a translation request to the DeepL API.
+  Sends a rephrasing request to the DeepL API.
 
-  Constructs a request to translate the provided text into the specified target language.
+  Constructs a request to rephrase the provided text in the specified target language.
   """
   @spec post_rephrase(text(), String.t(), Keyword.t()) :: Req.Response.t() | Exception.t()
   def post_rephrase(text, target_lang, opts \\ []) do
