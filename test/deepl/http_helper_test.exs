@@ -18,7 +18,7 @@ defmodule Deepl.HTTPHelperTest do
 
       assert HTTPHelper.required_request_headers(accept: "text/plain") == [
                {"Accept", "text/plain"},
-               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"},
+               {"Authorization", "DeepL-Auth-Key wwwwwwww-xxxx-yyyy-zzzz-123456789012:fx"}
              ]
     end
   end
