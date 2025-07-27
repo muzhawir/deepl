@@ -40,8 +40,11 @@ iex> Deepl.Translator.translate("Hello World", "ID")
 {:ok,
  %{
    "translations" => [
-     %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
-   ]
+     %{
+        "detected_source_language" => "EN",
+        "text" => "Halo Dunia"
+      }
+    ]
  }}
 ```
 
@@ -59,6 +62,17 @@ iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
      }
    ]
  }}
+```
+
+**Get supported languages:**
+
+```elixir
+iex> Deepl.Language.get_languages()
+{:ok,
+ [
+   %{"language" => "AR", "name" => "Arabic"},
+   %{"language" => "BG", "name" => "Bulgarian"}
+ ]}
 ```
 
 **Get usage and quota:**

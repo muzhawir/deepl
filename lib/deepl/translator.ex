@@ -26,45 +26,45 @@ defmodule Deepl.Translator do
 
   The accepted options are:
 
-  - `context` - Add additional context that can influence a translation but is not translated
+  - `:context` - Add additional context that can influence a translation but is not translated
     itself, the value must be a string.
-  - `model_type` - Specifies which DeepL model should be used for translation, the value must be
+  - `:model_type` - Specifies which DeepL model should be used for translation, the value must be
     a string.
-  - `split_sentences` - Sets whether the translation engine should first split the input into
+  - `:split_sentences` - Sets whether the translation engine should first split the input into
     sentences, the value must be a string.
-  - `preserve_formatting` - Sets whether the translation engine should respect the original
+  - `:preserve_formatting` - Sets whether the translation engine should respect the original
     formatting, even if it would usually correct some aspects, the value must be a boolean.
-  - `formality` - Sets whether the translated text should lean towards formal or informal
+  - `:formality` - Sets whether the translated text should lean towards formal or informal
     language, the value must be a string.
-  - `glossary_id` - Specify the glossary to use for the translation, this option requires the
+  - `:glossary_id` - Specify the glossary to use for the translation, this option requires the
     `source_lang` option to be set, the value must be a string.
-  - `show_billed_characters` - Show the number of billed characters in the response, the value
+  - `:show_billed_characters` - Show the number of billed characters in the response, the value
     must be a boolean.
-  - `tag_handling` - Sets which kind of tags should be handled, the value must be a string.
+  - `:tag_handling` - Sets which kind of tags should be handled, the value must be a string.
   - `outline_detection` - Set the automatic detection of XML structure, the value must be a
     boolean.
-  - `non_splitting_tags` - Set the XML tags that should not be split, the value must be a list of
+  - `:non_splitting_tags` - Set the XML tags that should not be split, the value must be a list of
     strings.
-  - `splitting_tags` - Set the XML tags that always cause splits, the value must be a list of
+  - `:splitting_tags` - Set the XML tags that always cause splits, the value must be a list of
     strings.
-  - `ignore_tags` - Set the XML tags that you do not want to be translated, the value must be a
+  - `:ignore_tags` - Set the XML tags that you do not want to be translated, the value must be a
     list of strings.
 
-  The values for `model_type` can be:
+  The values for `:model_type` can be:
 
-  - `latency_optimized`, `quality_optimized`, `prefer_quality_optimized`
+  - `"latency_optimized"`, `"quality_optimized"`, `"prefer_quality_optimized"`
 
-  The value for `split_sentences` can be:
+  The value for `:split_sentences` can be:
 
   - `"0"`, `"1"`, `"nonewlines"`
 
-  The values for `formality` can be:
+  The values for `:formality` can be:
 
-  - `default`, `more`, `less`, `prefer_more`, `prefer_less`
+  - `"default"`, `"more"`, `"less"`, `"prefer_more"`, `"prefer_less"`
 
-  The values for `tag_handling` can be:
+  The values for `:tag_handling` can be:
 
-  - `xml` or `html`
+  - `"xml"` or `"html"`
 
   ## Examples
 

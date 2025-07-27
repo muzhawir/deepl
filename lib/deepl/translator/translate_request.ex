@@ -2,8 +2,6 @@ defmodule Deepl.Translator.TranslateRequest do
   @moduledoc false
   @moduledoc since: "0.1.0"
 
-  import Deepl.HTTPHelper, only: [required_request_headers: 0]
-
   alias Deepl.HTTPHelper
   alias Req.Request
 
@@ -34,17 +32,17 @@ defmodule Deepl.Translator.TranslateRequest do
   def post_translate(text, target_lang, opts \\ []) do
     body =
       opts
-      |> HTTPHelper.filter_keyword_by_struct_keys(%__MODULE__{})
+      |> HTTPHelper.create_map_from_keyword(%__MODULE__{})
       |> Map.put(:text, List.flatten([text]))
       |> Map.put(:target_lang, target_lang)
-      |> Map.reject(fn {_k, v} -> is_nil(v) or v == [] end)
+      |> Map.reject(fn {_key, val} -> is_nil(val) or val == [] end)
       |> JSON.encode!()
 
     {_request, response} =
       [
         method: :post,
         url: Deepl.base_url!() <> "/v2/translate",
-        headers: required_request_headers(),
+        headers: [{"Content-Type", "application/json"} | HTTPHelper.required_request_headers()],
         body: body
       ]
       |> Request.new()

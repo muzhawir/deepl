@@ -9,21 +9,20 @@ defmodule Deepl.HTTPHelper do
   def required_request_headers(opts \\ []) do
     [
       {"Accept", Keyword.get(opts, :accept, "application/json")},
-      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()},
-      {"Content-Type", Keyword.get(opts, :content_type, "application/json")}
+      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
     ]
   end
 
   @doc """
-  Filters keywords by the keys of a given struct.
+  Create map from keyword list based on struct keys.
 
-  This function ensures that only valid options for the struct are included in the final map
-  before sending a request to the DeepL API.
+  This function filters the keyword options to include only keys that are present in the given
+  struct. It returns a filtered map.
   """
-  @spec filter_keyword_by_struct_keys(Keyword.t(), struct()) :: map()
-  def filter_keyword_by_struct_keys(keyword, struct) do
+  @spec create_map_from_keyword(Keyword.t(), struct()) :: map()
+  def create_map_from_keyword(keyword, struct) do
     keyword
-    |> Keyword.filter(fn {k, _v} -> k in Map.keys(struct) end)
+    |> Keyword.filter(fn {key, _val} -> key in Map.keys(struct) end)
     |> Map.new()
   end
 
