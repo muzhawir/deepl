@@ -63,8 +63,11 @@ iex> Deepl.Translator.translate("Hello World", "ID")
 {:ok,
  %{
    "translations" => [
-     %{"detected_source_language" => "EN", "text" => "Halo Dunia"}
-   ]
+     %{
+        "detected_source_language" => "EN",
+        "text" => "Halo Dunia"
+      }
+    ]
  }}
 ```
 
