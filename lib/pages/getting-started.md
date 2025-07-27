@@ -22,7 +22,7 @@ Add `deepl` to your `mix.exs` dependencies:
 ```elixir
 def deps do
   [
-    {:deepl, "~> 0.2.0"}
+    {:deepl, "~> 0.3.0"}
   ]
 end
 ```
@@ -85,6 +85,17 @@ iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
      }
    ]
  }}
+```
+
+**Get Supported Languages:**
+
+```elixir
+iex> Deepl.Language.get_languages()
+{:ok,
+ [
+   %{"language" => "AR", "name" => "Arabic"},
+   %{"language" => "BG", "name" => "Bulgarian"}
+ ]}
 ```
 
 **Get usage and quota:**
