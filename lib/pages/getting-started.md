@@ -87,7 +87,7 @@ iex> Deepl.Writer.rephrase("this is a example sentence to imprve", "en-US")
  }}
 ```
 
-**Get Supported Languages:**
+**Get supported languages:**
 
 ```elixir
 iex> Deepl.Language.get_languages()
