@@ -20,10 +20,10 @@ defmodule Deepl.Writer.RephraseRequest do
   def post_rephrase(text, target_lang, opts \\ []) do
     body =
       opts
-      |> HTTPHelper.filter_keyword_by_struct_keys(%__MODULE__{})
+      |> HTTPHelper.create_map_from_keyword(%__MODULE__{})
       |> Map.put(:text, List.flatten([text]))
       |> Map.put(:target_lang, target_lang)
-      |> Map.reject(fn {_k, v} -> is_nil(v) or v == [] end)
+      |> Map.reject(fn {_key, val} -> is_nil(val) or val == [] end)
       |> JSON.encode!()
 
     {_request, response} =

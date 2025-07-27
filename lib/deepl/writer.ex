@@ -2,8 +2,8 @@ defmodule Deepl.Writer do
   @moduledoc """
   Provides functions to rephrase text.
 
-  API references for this module can be found in the
-  [Improve text documentation](https://developers.deepl.com/api-reference/improve-text).
+  API references for this module can be found in the Improve text
+  [documentation](https://developers.deepl.com/api-reference/improve-text).
 
   > #### DeepL API Pro Subscription {: .info}
   >
