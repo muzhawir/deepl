@@ -1,11 +1,34 @@
 # Changelog
 
+## 0.3.0 (2025-07-27)
+
+### New Features
+
+- Added support for retrieving supported languages from the DeepL API, allowing users to fetch
+  available source and target languages.
+
+### Documentation
+
+- Updated usage examples and formatting to demonstrate the new language retrieval feature and
+  clarify option usage.
+- Improved readability of example responses with multi-line formatting.
+
+### Bug Fixes
+
+- Standardized option names with colon prefixes and quoted string values for consistency in
+  documentation.
+
+### Tests
+
+- Added tests for the new language retrieval functionality.
+- Updated header-related tests to reflect changes in required request headers.
+
 ## 0.2.0 (2025-07-26)
 
 ### New Features
 
 - Introduced text rephrasing functionality for Pro users, allowing rephrasing of single or
-multiple texts with style and tone options.
+  multiple texts with style and tone options.
 - Added new modules for translation and rephrasing, providing clearer and more robust APIs.
 
 ### Bug Fixes
