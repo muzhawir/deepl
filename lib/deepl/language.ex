@@ -41,15 +41,21 @@ defmodule Deepl.Language do
   """
   @spec get_languages(Keyword.t()) :: {:ok, map()} | {:error, String.t()}
   def get_languages(opts \\ []) do
-    {_request, response} =
-      [
-        method: :get,
-        url: Deepl.base_url!() <> "/v2/languages?type=" <> Keyword.get(opts, :type, "source"),
-        headers: HTTPHelper.required_request_headers()
-      ]
-      |> Request.new()
-      |> Deepl.Request.run_request()
+    type = Keyword.get(opts, :type, "source")
 
-    HTTPHelper.response(response.status, response.body)
+    if type in ["source", "target"] do
+      {_request, response} =
+        [
+          method: :get,
+          url: Deepl.base_url!() <> "/v2/languages?type=" <> Keyword.get(opts, :type, "source"),
+          headers: HTTPHelper.required_request_headers()
+        ]
+        |> Request.new()
+        |> Deepl.Request.run_request()
+
+      HTTPHelper.response(response.status, response.body)
+    else
+      {:error, "Invalid option, type must be either 'source' or 'target'"}
+    end
   end
 end
