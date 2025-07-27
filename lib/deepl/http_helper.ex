@@ -9,8 +9,7 @@ defmodule Deepl.HTTPHelper do
   def required_request_headers(opts \\ []) do
     [
       {"Accept", Keyword.get(opts, :accept, "application/json")},
-      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()},
-      {"Content-Type", Keyword.get(opts, :content_type, "application/json")}
+      {"Authorization", "DeepL-Auth-Key " <> Deepl.get_api_key()}
     ]
   end
 

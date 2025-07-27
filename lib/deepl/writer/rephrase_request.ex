@@ -2,8 +2,6 @@ defmodule Deepl.Writer.RephraseRequest do
   @moduledoc false
   @moduledoc since: "0.1.3"
 
-  import Deepl.HTTPHelper, only: [required_request_headers: 0]
-
   alias Deepl.HTTPHelper
   alias Req.Request
 
@@ -30,7 +28,7 @@ defmodule Deepl.Writer.RephraseRequest do
       [
         method: :post,
         url: Deepl.base_url!() <> "/v2/write/rephrase",
-        headers: required_request_headers(),
+        headers: [{"Content-Type", "application/json"} | HTTPHelper.required_request_headers()],
         body: body
       ]
       |> Request.new()
